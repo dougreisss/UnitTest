@@ -23,11 +23,11 @@ namespace MyClassesTests
         {
             //Tecnica AAA
 
-            //Arange --> Instância classes e variaveis necessarias para rodar o teste
+            //Arange --> Instï¿½ncia classes e variaveis necessarias para rodar o teste
             FileProcess fileProcess = new FileProcess();
             bool fromCall;
 
-            //Action --> Realiza a ação de teste
+            //Action --> Realiza a aï¿½ï¿½o de teste
             TestContext.WriteLine($"Creating file: {_GoodFileName}");
             File.AppendAllText(_GoodFileName, "Some Text");
 
@@ -37,7 +37,7 @@ namespace MyClassesTests
             TestContext.WriteLine($"Deleting file: {_GoodFileName}");
             File.Delete(_GoodFileName);
 
-            //Assert --> Verifica a ação
+            //Assert --> Verifica a aï¿½ï¿½o
             Assert.IsTrue(fromCall);
         }
 
@@ -49,14 +49,14 @@ namespace MyClassesTests
         public void FileNameDoesNotExists()
         {
             //Tecnica AAA
-            //Arange --> Instância classes e variaveis necessarias para rodar o teste
+            //Arange --> Instï¿½ncia classes e variaveis necessarias para rodar o teste
             FileProcess fileProcess = new FileProcess();
             bool fromCall;
 
-            //Action --> Realiza a ação de teste
+            //Action --> Realiza a aï¿½ï¿½o de teste
             fromCall = fileProcess.FileExists(BAD_FILE_NAME);
 
-            //Assert --> Verifica a ação
+            //Assert --> Verifica a aï¿½ï¿½o
             Assert.IsFalse(fromCall);
         }
 
@@ -75,6 +75,10 @@ namespace MyClassesTests
         }
 
         [TestMethod]
+        [Owner("Douglas")]
+        [Description("Check to see if a file is null or empty using try Catch")]
+        [Priority(0)]
+        [TestCategory("Exception")]
         public void FileNameNullOrEmpty_ThrowsArgumentNullException_UsingTryCatch()
         {
             FileProcess fileProcess = new FileProcess();

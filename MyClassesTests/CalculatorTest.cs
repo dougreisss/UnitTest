@@ -39,7 +39,7 @@ namespace MyClassesTests
         [DataRow(10.0, 20.0, 10.0)]
         public void calculateSubTest(double expectedValue, double firstValue, double secondValue)
         {
-            //Arange 
+            //Arange  
             Calculator calc = new Calculator();
             double value;
 
@@ -99,7 +99,7 @@ namespace MyClassesTests
         [Priority(0)]
         [TestCategory("Exception")]
         [DataRow(10, 20, 0)]
-        public calculateDivTest_ThrowsArgumentNullException(double expectedValue, double firstValue, double secondValue)
+        public void calculateDivTest_ThrowsArgumentNullException(double expectedValue, double firstValue, double secondValue)
         {
             //Exception Handling
 
