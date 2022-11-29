@@ -25,6 +25,11 @@ namespace MyClasses
 
         public double calculateDiv(double firstValue, double secondValue)
         {
+            if (secondValue == 0)
+            {
+                throw new ArgumentNullException("0");
+            }
+
             return firstValue / secondValue;
         }
 
