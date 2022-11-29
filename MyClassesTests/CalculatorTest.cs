@@ -11,7 +11,10 @@ namespace MyClassesTests
     [TestClass]
     public class CalculatorTest
     {
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
+        [TestCategory("NoException")]
         [Owner("Douglas")]
         [DataRow(10.0, 5.0, 5.0)]
         [DataRow(13.0, 5.0, 8.0)]
@@ -23,17 +26,18 @@ namespace MyClassesTests
 
             //Arange 
             Calculator calc = new Calculator();
-            double value;
+            double result;
 
             //Action 
-            value = calc.calculateSum(firstValue, secondValue);
+            result = calc.calculateSum(firstValue, secondValue);
+            TestContext.WriteLine($"{firstValue} + {secondValue} = {result}");
 
             //Assert
-            Assert.AreEqual(expectedValue, value);
-
+            Assert.AreEqual(expectedValue, result);
         }
 
         [TestMethod]
+        [TestCategory("NoException")]
         [Owner("Douglas")]
         [DataRow(0, 10.0, 10.0)]
         [DataRow(10.0, 20.0, 10.0)]
@@ -41,17 +45,19 @@ namespace MyClassesTests
         {
             //Arange  
             Calculator calc = new Calculator();
-            double value;
+            double result;
 
             //Action 
-            value = calc.calculateSub(firstValue, secondValue);
+            result = calc.calculateSub(firstValue, secondValue);
+            TestContext.WriteLine($"{firstValue} - {secondValue} = {result}");
 
             //Assert 
-            Assert.AreEqual(expectedValue, value);
+            Assert.AreEqual(expectedValue, result);
         }
 
         [TestMethod]
         [Owner("Douglas")]
+        [TestCategory("NoException")]
         [DataRow(4.0, 2.0, 2.0)]
         [DataRow(25.0, 5.0, 5.0)]
         [DataRow(16.0, 4.0, 4.0)]
@@ -59,14 +65,37 @@ namespace MyClassesTests
         {
             //Arange 
             Calculator calc = new Calculator();
-            double value;
+            double result;
 
             //Action 
-            value = calc.calculateMult(firstValue, secondValue);
+            result = calc.calculateMult(firstValue, secondValue);
+            TestContext.WriteLine($"{firstValue} * {secondValue} = {result}");
 
             //Assert 
-            Assert.AreEqual(expectedValue, value);
+            Assert.AreEqual(expectedValue, result);
         }
+
+        [TestMethod]
+        [Owner("Douglas")]
+        [TestCategory("NoException")]
+        [DataRow(10, 20, 3)]
+        [DataRow(25, 50, 5)]
+        [DataRow(12, 24, 1)]
+        public void calculateDiv(double expectedValue, double firstValue, double secondValue)
+        {
+            // Arange
+            Calculator calc = new Calculator();
+            double result;
+
+            // Action
+            result = calc.calculateDiv(firstValue, secondValue);
+            TestContext.WriteLine($"{firstValue} / {secondValue} = {result}");
+
+
+            // Assert
+            Assert.AreNotEqual(expectedValue, result);
+        }
+
 
         [TestMethod]
         [Owner("Douglas")]
@@ -78,10 +107,12 @@ namespace MyClassesTests
             {
                 //Arange 
                 Calculator calc = new Calculator();
-                double value;
+                double result;
 
                 //Action 
-                value = calc.calculateDiv(firstValue, secondValue);
+                result = calc.calculateDiv(firstValue, secondValue);
+                TestContext.WriteLine($"{firstValue} / {secondValue} = {result}");
+
             } 
             catch (ArgumentException)
             {
@@ -105,10 +136,10 @@ namespace MyClassesTests
 
             //Arange 
             Calculator calc = new Calculator();
-            double value;
+            double result;
 
             //Action 
-            value = calc.calculateDiv(firstValue, secondValue);
+            result = calc.calculateDiv(firstValue, secondValue);
         }
 
     }
