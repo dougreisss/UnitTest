@@ -15,7 +15,7 @@ namespace MyClassesTests
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        [Description("Check to see if a file does exists.")]
+        [Description("Verificar se um arquivo existe")]
         [Owner("Douglas")]
         [Priority(1)]
         [TestCategory("NoException")]
@@ -23,11 +23,11 @@ namespace MyClassesTests
         {
             //Tecnica AAA
 
-            //Arange --> Inst�ncia classes e variaveis necessarias para rodar o teste
+            //Arange --> Instancia classes e variaveis necessarias para rodar o teste
             FileProcess fileProcess = new FileProcess();
             bool fromCall;
 
-            //Action --> Realiza a a��o de teste
+            //Action --> Realiza a ação de teste
             TestContext.WriteLine($"Creating file: {_GoodFileName}");
             File.AppendAllText(_GoodFileName, "Some Text");
 
@@ -37,32 +37,32 @@ namespace MyClassesTests
             TestContext.WriteLine($"Deleting file: {_GoodFileName}");
             File.Delete(_GoodFileName);
 
-            //Assert --> Verifica a a��o
+            //Assert --> Verifica a ação
             Assert.IsTrue(fromCall);
         }
 
         [TestMethod]
-        [Description("Check to see if a file does not exists.")]
+        [Description("Verificar se um arquivo não existe")]
         [Owner("Douglas")]
         [Priority(1)]
         [TestCategory("NoException")]
         public void FileNameDoesNotExists()
         {
             //Tecnica AAA
-            //Arange --> Inst�ncia classes e variaveis necessarias para rodar o teste
+            //Arange --> Instância classes e variaveis necessarias para rodar o teste
             FileProcess fileProcess = new FileProcess();
             bool fromCall;
 
-            //Action --> Realiza a a��o de teste
+            //Action --> Realiza a ação de teste
             fromCall = fileProcess.FileExists(BAD_FILE_NAME);
 
-            //Assert --> Verifica a a��o
+            //Assert --> Verifica a ação
             Assert.IsFalse(fromCall);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        [Description("Check to see if a file is null or empty")]
+        [Description("Verificar se um arquivo é vazio ou nulo")]
         [Owner("Douglas")]
         [Priority(0)]
         [TestCategory("Exception")]
@@ -76,15 +76,17 @@ namespace MyClassesTests
 
         [TestMethod]
         [Owner("Douglas")]
-        [Description("Check to see if a file is null or empty using try Catch")]
+        [Description("Verificar se um arquivo é vazio ou nulo usando try catch")]
         [Priority(0)]
         [TestCategory("Exception")]
         public void FileNameNullOrEmpty_ThrowsArgumentNullException_UsingTryCatch()
         {
+            //Arange
             FileProcess fileProcess = new FileProcess();
 
             try
             {
+                //Action
                 fileProcess.FileExists("");
             }
             catch (ArgumentException)
@@ -93,6 +95,7 @@ namespace MyClassesTests
                 return;
             }
 
+            //Assert
             Assert.Fail("Fail expected");
         }
 

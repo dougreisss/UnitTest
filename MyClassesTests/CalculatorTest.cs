@@ -15,6 +15,7 @@ namespace MyClassesTests
 
         [TestMethod]
         [TestCategory("NoException")]
+        [Description("Verificar valores de soma")]
         [Owner("Douglas")]
         [DataRow(10.0, 5.0, 5.0)]
         [DataRow(13.0, 5.0, 8.0)]
@@ -30,6 +31,7 @@ namespace MyClassesTests
 
             //Action 
             result = calc.calculateSum(firstValue, secondValue);
+            TestContext.WriteLine($"Expected value: {expectedValue}");
             TestContext.WriteLine($"{firstValue} + {secondValue} = {result}");
 
             //Assert
@@ -38,6 +40,7 @@ namespace MyClassesTests
 
         [TestMethod]
         [TestCategory("NoException")]
+        [Description("Verificar valores de subtração")]
         [Owner("Douglas")]
         [DataRow(0, 10.0, 10.0)]
         [DataRow(10.0, 20.0, 10.0)]
@@ -49,6 +52,7 @@ namespace MyClassesTests
 
             //Action 
             result = calc.calculateSub(firstValue, secondValue);
+            TestContext.WriteLine($"Expected value: {expectedValue}");
             TestContext.WriteLine($"{firstValue} - {secondValue} = {result}");
 
             //Assert 
@@ -58,6 +62,7 @@ namespace MyClassesTests
         [TestMethod]
         [Owner("Douglas")]
         [TestCategory("NoException")]
+        [Description("Verificar valores de multiplicação")]
         [DataRow(4.0, 2.0, 2.0)]
         [DataRow(25.0, 5.0, 5.0)]
         [DataRow(16.0, 4.0, 4.0)]
@@ -69,6 +74,7 @@ namespace MyClassesTests
 
             //Action 
             result = calc.calculateMult(firstValue, secondValue);
+            TestContext.WriteLine($"Expected value: {expectedValue}");
             TestContext.WriteLine($"{firstValue} * {secondValue} = {result}");
 
             //Assert 
@@ -77,11 +83,12 @@ namespace MyClassesTests
 
         [TestMethod]
         [Owner("Douglas")]
+        [Description("Verificar valores de divisão que não são iguais")]
         [TestCategory("NoException")]
         [DataRow(10, 20, 3)]
         [DataRow(25, 50, 5)]
         [DataRow(12, 24, 1)]
-        public void calculateDiv(double expectedValue, double firstValue, double secondValue)
+        public void calculateDiv_AreNotEqual(double expectedValue, double firstValue, double secondValue)
         {
             // Arange
             Calculator calc = new Calculator();
@@ -89,8 +96,8 @@ namespace MyClassesTests
 
             // Action
             result = calc.calculateDiv(firstValue, secondValue);
+            TestContext.WriteLine($"Expected value: {expectedValue}");
             TestContext.WriteLine($"{firstValue} / {secondValue} = {result}");
-
 
             // Assert
             Assert.AreNotEqual(expectedValue, result);
@@ -99,9 +106,10 @@ namespace MyClassesTests
 
         [TestMethod]
         [Owner("Douglas")]
+        [Description("Verificar valores de divisão que geram exceptions")]
         [TestCategory("Exception")]
         [DataRow(10, 20, 0)]
-        public void calculateDivTest_ThrowsArgumentNullException_UsingTryCatch(double expectedValue, double firstValue, double secondValue)
+        public void calculateDivTest_ThrowsException_UsingTryCatch(double expectedValue, double firstValue, double secondValue)
         {
             try
             {
@@ -111,10 +119,11 @@ namespace MyClassesTests
 
                 //Action 
                 result = calc.calculateDiv(firstValue, secondValue);
+                TestContext.WriteLine($"Expected value: {expectedValue}");
                 TestContext.WriteLine($"{firstValue} / {secondValue} = {result}");
-
+                 
             } 
-            catch (ArgumentException)
+            catch (Exception)
             {
                 //Isso foi um sucesso!
                 return;
@@ -125,7 +134,7 @@ namespace MyClassesTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(Exception))]
         [Owner("Douglas")]
         [Priority(0)]
         [TestCategory("Exception")]

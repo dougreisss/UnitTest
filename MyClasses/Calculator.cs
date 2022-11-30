@@ -27,7 +27,7 @@ namespace MyClasses
         {
             if (secondValue == 0)
             {
-                throw new ArgumentNullException("0");
+                throw new Exception();
             }
 
             return firstValue / secondValue;
